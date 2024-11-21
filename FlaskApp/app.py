@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = 'why would I tell you my secret key?'
 
-#conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+#conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
 #cursor = conn.cursor()
 #net start MySQL80
 
@@ -37,7 +37,7 @@ def signUp():
         if _name and _email and _password:           
             # All Good, let's call MySQL           
             #conn = mysql.connect()
-            conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+            conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
             cursor = conn.cursor()
             _hashed_password = generate_password_hash(_password)
             
@@ -72,7 +72,7 @@ def validateLogin():
         _username = request.form['inputEmail']
         _password = request.form['inputPassword']
 
-        conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+        conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
         cursor = conn.cursor()
         
         #cursor.callproc('sp_validateLogin',(_username,))  #EN LOCAL EL PRCEDUURE NO FUNCIONA / LO EJECUTO CON UN QUERY COMO EL DE ABAJO
@@ -127,7 +127,7 @@ def addWish():
             else:
                 _done = 1
 
-            conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+            conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
             cursor = conn.cursor()
             cursor.callproc('sp_addWish',(_title,_description,_user,_filePath,_private,_done))
             data = cursor.fetchall()
@@ -164,7 +164,7 @@ def getWish():
             #print (_offset)
             _total_records = 0
 
-            conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+            conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
             cursor = conn.cursor()
 
 
@@ -208,7 +208,7 @@ def getWishById():
         if session.get('user'):
             _id = request.form['id']
             _user = session.get('user')
-            conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+            conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
             cursor = conn.cursor()
 
             cursor.callproc('sp_GetWishById',(_id,_user))
@@ -240,7 +240,7 @@ def updateWish():
             _isDone = request.form['isDone']
             print(_filePath)
      
-            conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+            conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
             cursor = conn.cursor()
             
             cursor.callproc('sp_updateWish',(_title,_description,_wish_id,_user,_filePath,_isPrivate,_isDone))
@@ -264,7 +264,7 @@ def deleteWish():
         if session.get('user'):
             _id = request.form['id']
             _user = session.get('user')
-            conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+            conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
             cursor = conn.cursor()
 
             #cursor.callproc('sp_deleteWish',(_id,_user))
@@ -306,7 +306,7 @@ def getAllWishes():
     try:
         if session.get('user'):
             _user = session.get('user')
-            conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+            conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
             cursor = conn.cursor()
             cursor.callproc('sp_GetAllWishes',(_user,))
             data0 = [r.fetchall() for r in cursor.stored_results()]
@@ -346,7 +346,7 @@ def addUpdateLike():
             _like = request.form['like']
             _user = session.get('user')
            
-            conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+            conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
             cursor = conn.cursor()
 
             cursor.callproc('sp_AddUpdateLikes',(_wishId,_user,_like))
@@ -360,7 +360,7 @@ def addUpdateLike():
                 conn.close()
                 #return json.dumps({'status':'OK'})
             
-                conn = mysql.connector.connect(host="localhost",port="3307",user="raesgar",password="Obelix28",database="BucketList")
+                conn = mysql.connector.connect(host="localhost",port="3307",user="*******",password="*******",database="BucketList")
                 cursor = conn.cursor()
                 cursor.callproc('sp_getLikeStatus',(_wishId,_user))
                 
