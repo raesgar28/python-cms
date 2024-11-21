@@ -17,6 +17,12 @@ app.secret_key = 'why would I tell you my secret key?'
 def main():
     return render_template('index.html')
 
+
+@app.route('/logout')
+def logout():
+    session.pop('user',None)
+    return redirect('/')
+
 @app.route('/showSignUp')
 def showSignUp():
     return render_template('signup.html')
